@@ -44,10 +44,10 @@ const siteConfig = {
 
             <div class="team-card">
                 <div class="card-left">
-                    <div class="role-icon"><div class="shape-square"></div></div>
+                    <div class="role-icon"><div class="shape-triangle-outline"></div></div>
                     <div class="role-label">ROLE CONFIGURATION</div>
                     <h2 class="role-title-main">The Enabler</h2>
-                    <div class="role-def-text">AI 藝術系統的基石</div>
+                    <div class="role-def-text">AI 藝術開發主理人 / 專案架構師</div>
                 </div>
                 <div class="card-right">
                     <div class="identity-header">
@@ -66,10 +66,10 @@ const siteConfig = {
 
             <div class="team-card">
                 <div class="card-left">
-                    <div class="role-icon"><div class="shape-triangle-outline"></div></div>
+                    <div class="role-icon"><div class="shape-circle"></div></div>
                     <div class="role-label">ROLE CONFIGURATION</div>
                     <h2 class="role-title-main">The Decoder</h2>
-                    <div class="role-def-text">純粹邏輯引擎</div>
+                    <div class="role-def-text">聲音設計師 / AI 語言學</div>
                 </div>
                 <div class="card-right">
                     <div class="identity-header">
@@ -88,10 +88,10 @@ const siteConfig = {
 
             <div class="team-card">
                 <div class="card-left">
-                    <div class="role-icon"><div class="shape-circle"></div></div>
+                    <div class="role-icon"><div class="shape-square"></div></div>
                     <div class="role-label">ROLE CONFIGURATION</div>
                     <h2 class="role-title-main">The Conductor</h2>
-                    <div class="role-def-text">空間敘事導演</div>
+                    <div class="role-def-text">藝術總監 / 空間導演</div>
                 </div>
                 <div class="card-right">
                     <div class="identity-header">
@@ -113,7 +113,7 @@ const siteConfig = {
                     <div class="role-icon"><div class="shape-diamond"></div></div>
                     <div class="role-label">ROLE CONFIGURATION</div>
                     <h2 class="role-title-main">The Integrator</h2>
-                    <div class="role-def-text">感官融合專家</div>
+                    <div class="role-def-text">影音傳達設計師 / 整合行銷</div>
                 </div>
                 <div class="card-right">
                     <div class="identity-header">
