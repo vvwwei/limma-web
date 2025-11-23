@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>LIMMA | Zmma Studio</title>
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <div id="loader"><div class="loader-text">INITIALIZING LIMMA SYSTEM...</div></div>
+    <div id="canvas-container"></div>
+
+    <div id="ui-layer">
+        <div class="brand-header">
+            <h1>LIMMA</h1>
+            <span>ENGINEER FEELING</span>
+        </div>
+        <div class="interaction-hint">
+            [ TAP NODES OR CENTER CORE ]
+        </div>
+    </div>
+
+    <div id="content-overlay">
+        <button class="close-btn" id="close-btn">×</button>
+        <div class="content-container">
+            <h2 class="panel-title" id="overlay-title">TITLE</h2>
+            <div class="panel-body" id="overlay-body">Here</div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/18.6.4/tween.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    
+    <script src="config/site-config.js"></script>
+    <script src="js/texture-generator.js"></script>
+    <script src="js/scene-manager.js"></script>
+    <script src="js/nexus-system.js"></script>
+    <script src="js/node-manager.js"></script>
+    <script src="js/interaction-handler.js"></script>
+    <script src="js/overlay-controller.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
+
