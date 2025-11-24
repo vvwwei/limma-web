@@ -6,7 +6,13 @@
 Limma_Official_Web/
 ├── index.html                 # 主入口
 ├── config/
-│   └── site-config.js        # 網站內容配置（獨立管理各頁面）
+│   ├── site-config.js        # 網站內容彙整入口（從 pages 匯入）
+│   └── pages/                # 各頁面獨立設定
+│       ├── explore.js
+│       ├── services.js
+│       ├── about.js
+│       ├── contact.js
+│       └── yuan.js
 ├── styles/
 │   └── main.css              # 全域樣式
 └── js/
@@ -22,9 +28,13 @@ Limma_Official_Web/
 ## 模組說明
 
 ### 1. **config/site-config.js**
-- 管理所有頁面內容（Portfolio、Services、Team、Contact、Yuan）
-- 每個節點獨立配置，易於維護
-- 支援外部連結設定
+- 彙整各分頁設定為單一 `siteConfig`（對外唯一入口）
+- 從 `config/pages/*` 匯入，避免單檔過於龐大
+- 載入順序需在頁面設定之後（見 index.html）
+
+### 1.1 **config/pages/**（分頁獨立檔）
+- `explore.js`、`services.js`、`about.js`、`contact.js`、`yuan.js`
+- 每頁面內容獨立管理、容易維護與協作
 
 ### 2. **js/scene-manager.js**
 - Three.js 場景初始化
@@ -63,30 +73,46 @@ Limma_Official_Web/
 ## 如何修改內容
 
 ### 修改頁面內容
-編輯 `config/site-config.js`，找到對應的節點：
+編輯對應的分頁檔，例如 `config/pages/services.js`：
 
 ```javascript
-services: {
-    id: 'services',
-    label: 'SERVICES',
-    title: '服務與技術支援',
-    content: `<p>你的內容</p>`
-}
+const PageServices = {
+  id: 'services',
+  label: 'SERVICES',
+  title: '服務與技術支援',
+  content: `<p>你的內容</p>`
+};
 ```
 
 ### 新增外部連結
-在 `config/site-config.js` 中加入 `externalUrl`：
+在分頁檔中加入 `externalUrl` 即可被點擊後導向：
 
 ```javascript
-portfolio: {
-    externalUrl: 'https://your-link.com'
-}
+const PageExplore = {
+  id: 'explore',
+  externalUrl: 'https://your-link.com'
+};
 ```
 
 ### 調整視覺效果
 - 顏色：修改 `styles/main.css` 中的 `:root` 變數
 - 粒子數量：修改 `js/nexus-system.js` 中的 `count`
 - 節點位置：修改 `js/node-manager.js` 中的 `nodePositions`
+
+## 載入順序（重要）
+請確保 `index.html` 先載入分頁檔，再載入 `site-config.js`：
+
+```html
+<!-- Page Configs (Must be loaded before site-config.js) -->
+<script src="config/pages/explore.js"></script>
+<script src="config/pages/services.js"></script>
+<script src="config/pages/about.js"></script>
+<script src="config/pages/contact.js"></script>
+<script src="config/pages/yuan.js"></script>
+
+<!-- Aggregate -->
+<script src="config/site-config.js"></script>
+```
 
 ## 技術棧
 

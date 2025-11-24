@@ -10,7 +10,7 @@ const NodeManager = {
 
     createNodes() {
         const nodePositions = [
-            [12, 5, 5, 'portfolio'],
+            [12, 5, 5, 'explore'],
             [-12, 5, -5, 'services'],
             [12, -8, -5, 'contact'],
             [-12, -8, 5, 'team']
@@ -29,10 +29,29 @@ const NodeManager = {
                 metalness: 0.1
             });
 
-            const cube = new THREE.Mesh(geometry, greyMaterial);
-            cube.castShadow = true;
-            cube.receiveShadow = true;
-            nodeWrap.add(cube);
+            // explore 節點使用四方塊組合，其餘維持單一方塊
+            if (pos[3] === 'explore') {
+                const smallSize = 1.1;
+                const gap = 0.3; // 讓整體外觀接近原本 2.5 尺寸
+                const smallGeom = new THREE.BoxGeometry(smallSize, smallSize, smallSize);
+                const offset = (smallSize / 2) + (gap / 2); // 約 0.7
+                const offsets = [-offset, offset];
+
+                offsets.forEach((ox) => {
+                    offsets.forEach((oy) => {
+                        const smallCube = new THREE.Mesh(smallGeom, greyMaterial);
+                        smallCube.castShadow = true;
+                        smallCube.receiveShadow = true;
+                        smallCube.position.set(ox, oy, 0);
+                        nodeWrap.add(smallCube);
+                    });
+                });
+            } else {
+                const cube = new THREE.Mesh(geometry, greyMaterial);
+                cube.castShadow = true;
+                cube.receiveShadow = true;
+                nodeWrap.add(cube);
+            }
 
             const texture = TextureGenerator.createTextSprite(siteConfig[pos[3]].label);
             const spriteMat = new THREE.SpriteMaterial({ map: texture, transparent: true });
@@ -46,6 +65,12 @@ const NodeManager = {
     },
 
     handleHover(hoveredObj) {
+        // 當內容層開啟時，不處理 3D 物件的 Hover，避免游標變成手指
+        if (document.body.classList.contains('content-open')) {
+            document.body.style.cursor = 'default';
+            return;
+        }
+
         if (hoveredObj) {
             document.body.style.cursor = 'pointer';
             if (this.currentHoveredObject !== hoveredObj) {

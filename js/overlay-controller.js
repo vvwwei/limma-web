@@ -12,6 +12,11 @@ const OverlayController = {
         const data = siteConfig[key];
         document.getElementById('overlay-title').innerText = data.title;
         document.getElementById('overlay-body').innerHTML = data.content;
+
+        // Yuàn 頁面使用白底主題
+        if (this.overlay) {
+            this.overlay.classList.toggle('theme-white', key === 'yuan');
+        }
         
         this.overlay.classList.add('active');
         this.overlay.scrollTop = 0; 
@@ -19,6 +24,7 @@ const OverlayController = {
 
     close() {
         this.overlay.classList.remove('active');
+        this.overlay.classList.remove('theme-white');
         document.body.classList.remove('content-open');
         
         setTimeout(() => {
