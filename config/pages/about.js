@@ -20,7 +20,7 @@ const PageAbout = {
             </div>
             <div class="card-right">
                 <div class="identity-header">
-                    <h3 class="name-cn">力珩</h3>
+                    <h3 class="name-cn">施力珩</h3>
                     <span class="name-en">LIHENG</span>
                 </div>
                 <p class="role-desc">負責將跨維度的創意工作流精密化，架構 AI 藝術生產的底層基礎設施，他將混亂的需求梳理為可執行的邏輯，為藝術生產搭建基礎設施。</p>
@@ -42,7 +42,7 @@ const PageAbout = {
             </div>
             <div class="card-right">
                 <div class="identity-header">
-                    <h3 class="name-cn">力璜</h3>
+                    <h3 class="name-cn">施力璜</h3>
                     <span class="name-en">LIHUANG</span>
                 </div>
                 <p class="role-desc">透過精密語意學，將抽象概念「解碼」為精準的執行指令，並在聲音開發領域建構與視覺邏輯同源的聲學結構。</p>
@@ -86,7 +86,7 @@ const PageAbout = {
             </div>
             <div class="card-right">
                 <div class="identity-header">
-                    <h3 class="name-cn">昭惠</h3>
+                    <h3 class="name-cn">曾昭惠</h3>
                     <span class="name-en">ZHAOHUI</span>
                 </div>
                 <p class="role-desc">負責感官整合，將影像、聲音與氛圍進行完美的「定調」與同步，連結數位系統與人類知覺，確保作品與觀者共振。</p>

@@ -20,6 +20,13 @@ const OverlayController = {
         }
         document.getElementById('overlay-body').innerHTML = data.content;
 
+        // Append global footer into overlay body container
+        try {
+            if (window.Footer && window.SiteFooter) {
+                window.Footer.attachToOverlay(key);
+            }
+        } catch (e) {}
+
         // Yuàn 頁面使用白底主題
         if (this.overlay) {
             this.overlay.classList.toggle('theme-white', key === 'yuan');

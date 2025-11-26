@@ -15,7 +15,7 @@ const PageExplore = {
             }
             /* 固定概覽卡片底部的按鈕，不影響展開層的返回鍵 */
             #explore-overview .exp-btn{
-                position: absolute; left: 1.5rem; right: 1.5rem; bottom: 4rem;
+                position: absolute; left: 1.5rem; right: 1.5rem; bottom: 4rem; 
             }
             .exp-btn:hover { 
                 background: rgba(214,255,90,.12);
@@ -33,7 +33,7 @@ const PageExplore = {
                 display: flex;
                 flex-wrap: wrap;
                 gap: 1.25rem;
-                align-items: flex-start;
+                align-items: stretch;
             }
             #explore-overview .gallery-item.exp-card { 
                 min-height: 600px; 
@@ -42,6 +42,7 @@ const PageExplore = {
                 padding-right: 24px;
                 padding-bottom: 88px;
                 cursor: pointer;
+                /* 修正寬度計算：扣掉 gap 後平均分配 */
                 flex: 1 1 calc((100% - 2.5rem) / 3);
                 min-width: 300px;
                 box-sizing: border-box;
@@ -50,7 +51,11 @@ const PageExplore = {
             #explore-overview .gallery-item .item-desc{ line-height: 1.7; color:#ddd; }
             #explore-overview .gallery-item .exp-brief{ margin:.35rem 0 .35rem 0; padding-left:1.1rem; color:#ddd; }
             #explore-overview .gallery-item .exp-brief li{ margin:.2rem 0; }
-            #explore-overview .gallery-item .item-title{ margin-bottom:4rem; font-size: 1.6rem; line-height:1.25; }
+            #explore-overview .gallery-item .item-title{
+                margin-bottom:3.5rem;
+                font-size: clamp(1.4rem, 2.2vw, 2rem);
+                line-height:1.2;
+            }
             .ex-tag{ 
                 display:inline-block; font-size:.8rem; color:var(--accent-color);
                 border:1px solid var(--accent-color); padding:.15rem .5rem; border-radius:16px;
@@ -63,6 +68,9 @@ const PageExplore = {
                 letter-spacing:.5px; white-space: normal; word-break: break-word;
                 font-size: clamp(1.2rem, 1.9vw, 2.2rem);
                 line-height: 1.18;
+            }
+            #explore-overview .item-title .ex-title{
+                font-size: clamp(1.8rem, 2.6vw, 2.9rem);
             }
             .exp-header{
                 min-height: 120px;
@@ -77,6 +85,22 @@ const PageExplore = {
                 padding: .12rem .55rem; font-size: .8rem; letter-spacing:.2px;
             }
             .exp-gap{ height: .25rem; flex: 0 0 auto; }
+
+            .explore-intro{
+                font-size: clamp(1.05rem, 1.6vw, 1.35rem);
+                line-height: 1.9;
+                color: #f6f6f6;
+                margin: 0 0 2.2rem 0;
+                text-wrap: pretty;
+            }
+
+            @media (max-width: 768px){
+                .explore-intro{
+                    font-size: 1rem;
+                    line-height: 1.75;
+                    margin-bottom: 1.2rem;
+                }
+            }
 
             /* Decorative rotating geometry */
             .exp-geo{ width: 72px; height: 72px; perspective:700px; opacity:.85; pointer-events:none; margin:0 0 3.5rem 0; }
@@ -128,13 +152,14 @@ const PageExplore = {
             .inline-detail ul{
                 margin: .4rem 0 0 1.1rem;
                 padding: 0;
+                padding-right: 10px; /* 避免項目符號或文字太靠右 */
             }
             .inline-detail li{
                 margin:.25rem 0;
             }
         </style>
 
-        <p>快速探索 Limma lab 的方法論與能力地景；理解我們如何把AI智能、美學語彙與跨媒體工程連成可持續的商業解決辦法。</p>
+        <p class="explore-intro">快速探索 Limma lab 的方法論與能力地景；理解我們如何把AI智能、美學語彙與跨媒體工程連成可持續的商業解決辦法。</p>
 
         <!-- Overview -->
         <div id="explore-overview" class="gallery-grid">
@@ -164,7 +189,7 @@ const PageExplore = {
                             <li>跨感官美學參數化：把視覺／聽覺標準轉為訓練參數，輸出具美學一致性。</li>
                         </ul>
                     </div>
-                    <div class="exp-gap"></div>
+                    <div class="exp-gap" style="flex-grow: 1;"></div>
                     <button class="exp-btn" onclick="LIMMA_EXPLORE.toggleInline('ex01', event)">LEARN MORE</button>
                 </div>
             </div>
@@ -197,7 +222,7 @@ const PageExplore = {
                             <li>跨媒體延展：海報、刊物、包裝與周邊皆維持一致感官標準。</li>
                         </ul>
                     </div>
-                    <div class="exp-gap"></div>
+                    <div class="exp-gap" style="flex-grow: 1;"></div>
                     <button class="exp-btn" onclick="LIMMA_EXPLORE.toggleInline('ex02')">LEARN MORE</button>
                 </div>
             </div>
@@ -227,7 +252,7 @@ const PageExplore = {
                             <li>互動投影與視覺生成：3D 投影、動態追蹤、AI 影像讓行為即時成畫面。</li>
                         </ul>
                     </div>
-                    <div class="exp-gap"></div>
+                    <div class="exp-gap" style="flex-grow: 1;"></div>
                     <button class="exp-btn" onclick="LIMMA_EXPLORE.toggleInline('ex03', event)">LEARN MORE</button>
                 </div>
             </div>
