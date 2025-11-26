@@ -4,7 +4,7 @@ const PageAbout = {
     title: 'ABOUT US',
     content: `
         <p style="font-size:1.1rem; margin-bottom:3rem; line-height:1.8; max-width:800px;">
-            <strong style="color:#D6FF5A; font-size:1.4rem; display:block; margin-bottom:0.5rem;">Limma Lab</strong>
+            <strong style="color:#D6FF5A; font-size:1.4rem; display:block; margin-bottom:0.5rem;">Limma lab</strong>
             是一間致力於將 AI 技術導入藝術生產流程的科技藝術工作室。 <br>
             我們專注於系統開發、AI影音創造與語意的量化分析，打造跨界流動的藝術語境。
         </p>
@@ -100,4 +100,5 @@ const PageAbout = {
         </div>
     `
 };
+
 

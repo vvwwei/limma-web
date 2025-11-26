@@ -18,16 +18,32 @@ const NodeManager = {
 
         const geometry = new THREE.BoxGeometry(2.5, 2.5, 2.5);
         
+        // 生成共用布紋材質（含中國結壓印）
+        const tex = TextureGenerator.createFabricTexture({
+            color: '#3a3a3a',
+            weaveScale: 6,
+            bumpStrength: 0.14,
+            ribSpacing: 22,
+            ribWidth: 3,
+            ribStrength: 0.28,
+            ribAngle: -Math.PI / 18, // 約 -10°
+            knot: true
+        });
+        const fabricMaterial = new THREE.MeshStandardMaterial({ 
+            map: tex.base,
+            roughnessMap: tex.rough,
+            bumpMap: tex.bump,
+            bumpScale: 0.14,
+            roughness: 0.95,
+            metalness: 0.0,
+            color: 0x3a3a3a
+        });
+        const createMaterial = () => fabricMaterial.clone();
+
         nodePositions.forEach((pos) => {
             const nodeWrap = new THREE.Group();
             nodeWrap.position.set(pos[0], pos[1], pos[2]);
             nodeWrap.name = pos[3];
-
-            const greyMaterial = new THREE.MeshStandardMaterial({ 
-                color: 0x333333, 
-                roughness: 0.4, 
-                metalness: 0.1
-            });
 
             // explore 節點使用四方塊組合，其餘維持單一方塊
             if (pos[3] === 'explore') {
@@ -39,7 +55,7 @@ const NodeManager = {
 
                 offsets.forEach((ox) => {
                     offsets.forEach((oy) => {
-                        const smallCube = new THREE.Mesh(smallGeom, greyMaterial);
+                        const smallCube = new THREE.Mesh(smallGeom, createMaterial());
                         smallCube.castShadow = true;
                         smallCube.receiveShadow = true;
                         smallCube.position.set(ox, oy, 0);
@@ -47,7 +63,7 @@ const NodeManager = {
                     });
                 });
             } else {
-                const cube = new THREE.Mesh(geometry, greyMaterial);
+                const cube = new THREE.Mesh(geometry, createMaterial());
                 cube.castShadow = true;
                 cube.receiveShadow = true;
                 nodeWrap.add(cube);
@@ -73,21 +89,47 @@ const NodeManager = {
 
         if (hoveredObj) {
             document.body.style.cursor = 'pointer';
-            if (this.currentHoveredObject !== hoveredObj) {
+            
+            // 如果是 explore 節點內的小方塊，將目標設為其父層群組 (nodeWrap)
+            let target = hoveredObj;
+            if (hoveredObj.parent && hoveredObj.parent.name === 'explore') {
+                target = hoveredObj.parent;
+            }
+
+            if (this.currentHoveredObject !== target) {
+                // 清除舊的 hover
                 if (this.currentHoveredObject) {
-                    this.currentHoveredObject.material.emissive.setHex(0x000000);
+                    if (this.currentHoveredObject.name === 'explore') {
+                        this.currentHoveredObject.children.forEach(child => {
+                            if (child.isMesh && child.material) child.material.emissive.setHex(0x000000);
+                        });
+                    } else if (this.currentHoveredObject.material) {
+                        this.currentHoveredObject.material.emissive.setHex(0x000000);
+                    }
                 }
-                this.currentHoveredObject = hoveredObj;
-                if (this.currentHoveredObject.name === 'yuan') {
-                    this.currentHoveredObject.material.emissive.setHex(0x333333); 
-                } else {
-                    this.currentHoveredObject.material.emissive.setHex(0x666666);
+
+                this.currentHoveredObject = target;
+                
+                // 設定新的 hover
+                const emissiveColor = (target.name === 'yuan') ? 0x333333 : 0x666666;
+                if (target.name === 'explore') {
+                    target.children.forEach(child => {
+                        if (child.isMesh && child.material) child.material.emissive.setHex(emissiveColor);
+                    });
+                } else if (target.material) {
+                    target.material.emissive.setHex(emissiveColor);
                 }
             }
         } else {
             document.body.style.cursor = 'default';
             if (this.currentHoveredObject) {
-                this.currentHoveredObject.material.emissive.setHex(0x000000);
+                if (this.currentHoveredObject.name === 'explore') {
+                    this.currentHoveredObject.children.forEach(child => {
+                        if (child.isMesh && child.material) child.material.emissive.setHex(0x000000);
+                    });
+                } else if (this.currentHoveredObject.material) {
+                    this.currentHoveredObject.material.emissive.setHex(0x000000);
+                }
                 this.currentHoveredObject = null;
             }
         }

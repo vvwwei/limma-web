@@ -7,12 +7,19 @@
     <link rel="stylesheet" href="styles/main.css">
 </head>
 <body>
+    <div id="intro-overlay">
+        <video id="intro-video" autoplay muted loop playsinline>
+            <source src="assets/videos/intro.mov" type="video/mp4">
+            <source src="assets/videos/intro.mov" type="video/quicktime">
+        </video>
+        <button id="enter-btn">ENTER NOW</button>
+    </div>
     <div id="loader"><div class="loader-text">INITIALIZING LIMMA SYSTEM...</div></div>
     <div id="canvas-container"></div>
 
     <div id="ui-layer">
         <div class="brand-header">
-            <h1>LIMMA</h1>
+            <h1>Limma lab</h1>
             <span>ENGINEER FEELING</span>
         </div>
         <div class="interaction-hint">
