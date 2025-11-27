@@ -1,0 +1,5 @@
+# Prevent large MOV from being tracked in Git history
+assets/videos/intro.mov
+
+
+

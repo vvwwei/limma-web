@@ -129,6 +129,189 @@ body.content-open #ui-layer {
 .brand-header h1 { margin: 0; font-size: 6rem; letter-spacing: 4px; line-height: 1; }
 .brand-header span { font-size: 1.2rem; color: var(--text-color-sub); letter-spacing: 4px; line-height: 1; margin-top: 0.8em; }
 
+/* Header Navigation - Full Screen Overlay */
+.header-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(10, 10, 10, 0.95); /* Deep dark background matching brand */
+    backdrop-filter: blur(10px);
+    z-index: 40; /* Below toggle (55), covers content */
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+}
+
+.header-nav.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.header-nav a {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2rem;
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    padding: 0.5rem 1rem;
+    position: relative;
+}
+
+.header-nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background: var(--accent-color);
+    transition: width 0.3s ease;
+}
+
+.header-nav a:hover {
+    color: var(--accent-color);
+    letter-spacing: 4px;
+}
+
+.header-nav a:hover::after {
+    width: 100%;
+}
+
+.header-nav .cn-text {
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 1.2rem;
+    opacity: 0.6;
+    font-weight: 300;
+    text-transform: none;
+    letter-spacing: 1px;
+}
+
+/* Remove old positioning logic since it's now full screen */
+body.content-open .header-nav {
+    top: 0;
+    right: 0;
+    opacity: 0;
+    pointer-events: none;
+    transform: none;
+}
+
+body.content-open .header-nav.visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: none;
+}
+
+/* Nav Toggle (Hamburger) */
+.nav-toggle {
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    width: 50px; /* Match width of close-btn (50px) */
+    height: 50px; /* Match height of close-btn (50px) */
+    z-index: 55; /* Higher than header-nav (40) */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent-color) !important; /* Force green color unless overridden by theme-white */
+    transition: color 0.3s;
+}
+
+.nav-toggle svg {
+    width: 32px;
+    height: 32px;
+    fill: currentColor;
+}
+
+/* Adjust Toggle Position when Content Open */
+body.content-open .nav-toggle {
+    right: 2rem; 
+    top: 6.625rem; /* Below close button: 2rem (top) + 50px (height) + 1.5rem (gap) */
+    opacity: 1;
+    pointer-events: auto;
+    color: var(--accent-color) !important; 
+}
+
+/* Theme White Adaptation */
+body.theme-white .header-nav {
+    background: rgba(255, 255, 255, 0.9);
+    border-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Theme White Adaptation for Toggle */
+/* Force green even on white theme as requested */
+body.theme-white .nav-toggle {
+    color: var(--accent-color) !important;
+}
+body.theme-white .nav-toggle:hover {
+    color: #b5d948 !important; /* Slightly darker green on hover for feedback */
+}
+
+/* Also ensure close btn is fixed (already is) */
+
+.header-nav a {
+    color: #bbb;
+    text-decoration: none;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.95rem; 
+    letter-spacing: 1px;
+    transition: color 0.3s;
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    text-transform: uppercase;
+    text-shadow: none;
+}
+
+.header-nav a:hover {
+    color: var(--accent-color);
+}
+
+.header-nav .cn-text {
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 0.85rem;
+    opacity: 0.6;
+    font-weight: 300;
+    text-transform: none;
+}
+
+/* Theme White Adaptation for Header Nav */
+body.theme-white .header-nav a {
+    color: #666;
+    text-shadow: none;
+}
+body.theme-white .header-nav a:hover {
+    color: #000;
+}
+body.theme-white .nav-toggle {
+    color: #333;
+}
+body.theme-white .nav-toggle:hover {
+    color: #000;
+}
+
+@media (max-width: 640px) {
+    body.theme-white .header-nav a {
+        background: rgba(255,255,255,0.7);
+        border: 1px solid #ddd;
+    }
+}
+
 .interaction-hint {
     position: fixed;
     right: 1.25rem;
@@ -282,27 +465,34 @@ body.content-open #ui-layer {
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 30;
+    z-index: 60; /* Highest priority */
     transition: all 0.3s ease;
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0.8);
+}
+
+/* Show Close Button when Content is Open */
+body.content-open .close-btn {
+    opacity: 1;
+    pointer-events: auto;
+    transform: scale(1);
 }
 
 .close-btn:hover {
     background: var(--accent-color);
     color: #000;
-    transform: rotate(90deg);
+    transform: scale(1) rotate(90deg);
 }
 
 /* 白底主題下加強關閉按鈕可視性 */
-#content-overlay.theme-white .close-btn {
+body.theme-white .close-btn {
     background: var(--accent-color);
     color: #000;
     border: 2px solid #c7ff3e;
-    width: 56px;
-    height: 56px;
-    font-size: 2rem;
     box-shadow: 0 6px 18px rgba(0,0,0,0.15);
 }
-#content-overlay.theme-white .close-btn:hover {
+body.theme-white .close-btn:hover {
     box-shadow: 0 10px 28px rgba(0,0,0,0.22);
     transform: scale(1.05) rotate(90deg);
 }
@@ -595,6 +785,12 @@ body.content-open #ui-layer {
     .brand-header h1 {
         font-size: 4.5rem;
     }
+    /* Adjust Header Nav for Tablet/Mobile */
+    .header-nav {
+        top: 2rem;
+        right: 2rem;
+        gap: 1.5rem;
+    }
     .content-container {
         padding: 3rem 1.5rem 4.5rem;
     }
@@ -619,6 +815,34 @@ body.content-open #ui-layer {
         letter-spacing: 2px;
         margin-top: 0.5em;
     }
+    /* Header Nav on Mobile */
+    .header-nav a {
+        font-size: 1.2rem; /* Smaller font for mobile */
+        gap: 0.5rem;
+    }
+    .header-nav .cn-text {
+        font-size: 0.9rem;
+        display: inline; /* Ensure Chinese text is visible */
+    }
+    
+    /* Adjust Toggle Position on Mobile when Content Open */
+    body.content-open .nav-toggle {
+        right: 1rem; /* Align with close btn */
+        top: 4.5rem; /* Below close btn */
+    }
+    /* Since nav is full screen, we don't need to move it */
+    body.content-open .header-nav {
+        top: 0;
+        right: 0;
+    }
+
+    .nav-toggle {
+        top: 1rem;
+        right: 1rem;
+        width: 44px; /* Keep smaller on mobile to match close-btn mobile size */
+        height: 44px;
+    }
+
     .close-btn {
         width: 44px;
         height: 44px;

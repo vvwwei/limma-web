@@ -29,7 +29,9 @@ const OverlayController = {
 
         // Yuàn 頁面使用白底主題
         if (this.overlay) {
-            this.overlay.classList.toggle('theme-white', key === 'yuan');
+            const isYuan = key === 'yuan';
+            this.overlay.classList.toggle('theme-white', isYuan);
+            document.body.classList.toggle('theme-white', isYuan);
         }
         
         this.overlay.classList.add('active');

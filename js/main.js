@@ -124,6 +124,9 @@ function init() {
     // Setup icon-only interaction hint
     try { setupInteractionHint(); } catch (e) {}
 
+    // Setup Header Navigation
+    try { setupHeaderNav(); } catch (e) {}
+
     setTimeout(() => {
         document.getElementById('loader').style.opacity = 0;
         setTimeout(() => {
@@ -202,6 +205,43 @@ function setupInteractionHint() {
     window.addEventListener('pointerdown', hide);
     window.addEventListener('wheel', hide, { passive: true });
     window.addEventListener('touchstart', hide, { passive: true });
+}
+
+function setupHeaderNav() {
+    const nav = document.querySelector('.header-nav');
+    const toggle = document.getElementById('nav-toggle');
+    
+    if (toggle && nav) {
+        toggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            nav.classList.toggle('visible');
+        });
+        // Close nav when clicking outside
+        window.addEventListener('click', (e) => {
+            if (!nav.contains(e.target) && !toggle.contains(e.target)) {
+                nav.classList.remove('visible');
+            }
+        });
+    }
+
+    if (!nav) return;
+    const links = nav.querySelectorAll('[data-route]');
+    links.forEach(a => {
+        a.addEventListener('click', (ev) => {
+            ev.preventDefault();
+            ev.stopPropagation();
+            const route = a.getAttribute('data-route');
+            
+            if (route === 'home') {
+                if (typeof OverlayController !== 'undefined') OverlayController.close();
+            } else {
+                document.body.classList.add('content-open');
+                if (typeof OverlayController !== 'undefined') OverlayController.show(route);
+            }
+            // Close nav after selection
+            nav.classList.remove('visible');
+        });
+    });
 }
 
 function animate(time) {
