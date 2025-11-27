@@ -1,3 +1,31 @@
+// Define global video loader function
+if (!window.loadYuanVideo) {
+    window.loadYuanVideo = function(wrapper, type, id) {
+        var iframe = document.createElement('iframe');
+        iframe.width = "100%";
+        iframe.height = "100%";
+        
+        var src = '';
+        if (type === 'playlist') {
+            // Playlist format
+            src = 'https://www.youtube.com/embed/videoseries?list=' + id + '&autoplay=1&rel=0';
+        } else {
+            // Standard Video format
+            src = 'https://www.youtube.com/embed/' + id + '?autoplay=1&rel=0';
+        }
+        
+        iframe.src = src;
+        iframe.title = "YouTube video player";
+        iframe.frameBorder = "0";
+        // Removed strict referrerPolicy which might block file:// protocol
+        iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+        iframe.allowFullscreen = true;
+        
+        wrapper.innerHTML = ''; // Clear the cover image
+        wrapper.appendChild(iframe);
+    };
+}
+
 const PageYuan = {
     id: 'yuan',
     label: 'Yuàn', 
@@ -20,13 +48,11 @@ const PageYuan = {
             <div class="gallery-grid yuan-project-grid">
                 <!-- Project Video 1: 阿彌陀佛歌曲版 -->
                 <div class="gallery-item project-item">
-                    <div class="media-wrapper">
-                        <a href="https://youtu.be/HuWW4mlG-Ho?si=WB5ZWlA05TMgQyAr" target="_blank" style="display:block; width:100%; height:100%; text-decoration:none; position:relative;">
-                            <img src="https://img.youtube.com/vi/HuWW4mlG-Ho/hqdefault.jpg" alt="阿彌陀佛歌曲版" style="width:100%; height:100%; object-fit:cover; background:#000;">
-                            <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:60px; height:40px; background:rgba(0,0,0,0.7); border-radius:10px; display:flex; align-items:center; justify-content:center;">
-                                <div style="width:0; height:0; border-style:solid; border-width:10px 0 10px 16px; border-color:transparent transparent transparent #fff;"></div>
-                            </div>
-                        </a>
+                    <div class="media-wrapper" style="cursor: pointer;" onclick="loadYuanVideo(this, 'video', 'HuWW4mlG-Ho')">
+                        <img src="https://img.youtube.com/vi/HuWW4mlG-Ho/hqdefault.jpg" alt="阿彌陀佛歌曲版" style="width:100%; height:100%; object-fit:cover; background:#000;">
+                        <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:60px; height:40px; background:rgba(0,0,0,0.7); border-radius:10px; display:flex; align-items:center; justify-content:center; pointer-events:none;">
+                            <div style="width:0; height:0; border-style:solid; border-width:10px 0 10px 16px; border-color:transparent transparent transparent #fff;"></div>
+                        </div>
                     </div>
                     <div class="item-info" style="padding: 1rem;">
                         <h4 class="item-title" style="font-size: 1rem; margin:0;">【從從容容，游刃有餘】阿彌陀佛歌曲版</h4>
@@ -36,13 +62,11 @@ const PageYuan = {
 
                 <!-- Project Video 2: 普獻上人 圓寂報恩追思影片 -->
                 <div class="gallery-item project-item">
-                    <div class="media-wrapper">
-                        <a href="https://youtu.be/uVwL3XtcxIU?si=s7McVrMkzN0C1x-M" target="_blank" style="display:block; width:100%; height:100%; text-decoration:none; position:relative;">
-                            <img src="https://img.youtube.com/vi/uVwL3XtcxIU/hqdefault.jpg" alt="普獻上人 圓寂報恩追思影片" style="width:100%; height:100%; object-fit:cover; background:#000;">
-                            <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:60px; height:40px; background:rgba(0,0,0,0.7); border-radius:10px; display:flex; align-items:center; justify-content:center;">
-                                <div style="width:0; height:0; border-style:solid; border-width:10px 0 10px 16px; border-color:transparent transparent transparent #fff;"></div>
-                            </div>
-                        </a>
+                    <div class="media-wrapper" style="cursor: pointer;" onclick="loadYuanVideo(this, 'video', 'uVwL3XtcxIU')">
+                        <img src="https://img.youtube.com/vi/uVwL3XtcxIU/hqdefault.jpg" alt="普獻上人 圓寂報恩追思影片" style="width:100%; height:100%; object-fit:cover; background:#000;">
+                        <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:60px; height:40px; background:rgba(0,0,0,0.7); border-radius:10px; display:flex; align-items:center; justify-content:center; pointer-events:none;">
+                            <div style="width:0; height:0; border-style:solid; border-width:10px 0 10px 16px; border-color:transparent transparent transparent #fff;"></div>
+                        </div>
                     </div>
                     <div class="item-info" style="padding: 1rem;">
                         <h4 class="item-title" style="font-size: 1rem; margin:0;">【普獻上人 圓寂報恩追思影片】</h4>
@@ -52,13 +76,11 @@ const PageYuan = {
 
                 <!-- Project Video 3: 普獻上人 音聲重現 -->
                 <div class="gallery-item project-item">
-                    <div class="media-wrapper">
-                        <a href="https://youtu.be/F_84u3K63EE?si=tc-fiwTrv0knwdYh" target="_blank" style="display:block; width:100%; height:100%; text-decoration:none; position:relative;">
-                            <img src="https://img.youtube.com/vi/F_84u3K63EE/hqdefault.jpg" alt="普獻上人 音聲重現" style="width:100%; height:100%; object-fit:cover; background:#000;">
-                            <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:60px; height:40px; background:rgba(0,0,0,0.7); border-radius:10px; display:flex; align-items:center; justify-content:center;">
-                                <div style="width:0; height:0; border-style:solid; border-width:10px 0 10px 16px; border-color:transparent transparent transparent #fff;"></div>
-                            </div>
-                        </a>
+                    <div class="media-wrapper" style="cursor: pointer;" onclick="loadYuanVideo(this, 'video', 'F_84u3K63EE')">
+                        <img src="https://img.youtube.com/vi/F_84u3K63EE/hqdefault.jpg" alt="普獻上人 音聲重現" style="width:100%; height:100%; object-fit:cover; background:#000;">
+                        <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:60px; height:40px; background:rgba(0,0,0,0.7); border-radius:10px; display:flex; align-items:center; justify-content:center; pointer-events:none;">
+                            <div style="width:0; height:0; border-style:solid; border-width:10px 0 10px 16px; border-color:transparent transparent transparent #fff;"></div>
+                        </div>
                     </div>
                     <div class="item-info" style="padding: 1rem;">
                         <h4 class="item-title" style="font-size: 1rem; margin:0;">【普獻上人 音聲重現】一小時版本《心經》演唱</h4>
@@ -67,15 +89,13 @@ const PageYuan = {
 
                 <!-- Project Playlist: 祈願333 -->
                 <div class="gallery-item project-item">
-                    <div class="media-wrapper">
-                        <a href="https://youtube.com/playlist?list=PLmLjF88JvZq8lRR4dJDBAZHeOG4XGqEk0&si=Oicohh7nooEH9Rqr" target="_blank" style="display:block; width:100%; height:100%; text-decoration:none; position:relative;">
-                            <img src="20251015.jpg" alt="祈願333" style="width:100%; height:100%; object-fit:cover; background:#000;">
-                            <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:60px; height:40px; background:rgba(0,0,0,0.7); border-radius:10px; display:flex; align-items:center; justify-content:center;">
-                                <!-- Playlist Icon -->
-                                <svg viewBox="0 0 24 24" style="width:24px;height:24px;fill:#fff;"><path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-8 12.5v-9l6 4.5-6 4.5z"/></svg>
-                            </div>
-                            <div style="position:absolute; bottom:10px; right:10px; background:rgba(0,0,0,0.8); color:#fff; padding:2px 6px; border-radius:4px; font-size:0.8rem;">PLAYLIST</div>
-                        </a>
+                    <div class="media-wrapper" style="cursor: pointer;" onclick="loadYuanVideo(this, 'playlist', 'PLmLjF88JvZq8lRR4dJDBAZHeOG4XGqEk0')">
+                        <img src="20251015.jpg" alt="祈願333" style="width:100%; height:100%; object-fit:cover; background:#000;">
+                        <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:60px; height:40px; background:rgba(0,0,0,0.7); border-radius:10px; display:flex; align-items:center; justify-content:center; pointer-events:none;">
+                            <!-- Playlist Icon -->
+                            <svg viewBox="0 0 24 24" style="width:24px;height:24px;fill:#fff;"><path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-8 12.5v-9l6 4.5-6 4.5z"/></svg>
+                        </div>
+                        <div style="position:absolute; bottom:10px; right:10px; background:rgba(0,0,0,0.8); color:#fff; padding:2px 6px; border-radius:4px; font-size:0.8rem; pointer-events:none;">PLAYLIST</div>
                     </div>
                     <div class="item-info" style="padding: 1rem;">
                         <h4 class="item-title" style="font-size: 1rem; margin:0;">【祈願333】《金剛經大義》+ 直播精華</h4>
@@ -88,13 +108,11 @@ const PageYuan = {
             <div class="gallery-grid">
                 <!-- Video 1: Yuàn Short -->
                 <div class="gallery-item">
-                    <div class="media-wrapper">
-                        <a href="https://youtube.com/shorts/zLyXiRSZlVo" target="_blank" style="display:block; width:100%; height:100%; text-decoration:none; position:relative;">
-                            <img src="https://img.youtube.com/vi/zLyXiRSZlVo/hqdefault.jpg" alt="Yuàn Short" style="width:100%; height:100%; object-fit:contain; background:#000;">
-                            <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:60px; height:40px; background:rgba(0,0,0,0.7); border-radius:10px; display:flex; align-items:center; justify-content:center;">
-                                <div style="width:0; height:0; border-style:solid; border-width:10px 0 10px 16px; border-color:transparent transparent transparent #fff;"></div>
-                            </div>
-                        </a>
+                    <div class="media-wrapper" style="cursor: pointer;" onclick="loadYuanVideo(this, 'video', 'zLyXiRSZlVo')">
+                        <img src="https://img.youtube.com/vi/zLyXiRSZlVo/hqdefault.jpg" alt="Yuàn Short" style="width:100%; height:100%; object-fit:contain; background:#000;">
+                        <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:60px; height:40px; background:rgba(0,0,0,0.7); border-radius:10px; display:flex; align-items:center; justify-content:center; pointer-events:none;">
+                            <div style="width:0; height:0; border-style:solid; border-width:10px 0 10px 16px; border-color:transparent transparent transparent #fff;"></div>
+                        </div>
                     </div>
                     <div class="item-info" style="padding: 1rem;">
                         <h4 class="item-title" style="font-size: 1rem; margin:0;">【time 00:01】The Passage / 通道</h4>
@@ -103,13 +121,11 @@ const PageYuan = {
 
                 <!-- Video 2: 【time 00:02】La mer / 海 -->
                 <div class="gallery-item">
-                    <div class="media-wrapper">
-                        <a href="https://www.youtube.com/shorts/prwwlgpI51Q" target="_blank" style="display:block; width:100%; height:100%; text-decoration:none; position:relative;">
-                            <img src="https://img.youtube.com/vi/prwwlgpI51Q/hqdefault.jpg" alt="【time 00:02】La mer / 海" style="width:100%; height:100%; object-fit:contain; background:#000;">
-                            <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:60px; height:40px; background:rgba(0,0,0,0.7); border-radius:10px; display:flex; align-items:center; justify-content:center;">
-                                <div style="width:0; height:0; border-style:solid; border-width:10px 0 10px 16px; border-color:transparent transparent transparent #fff;"></div>
-                            </div>
-                        </a>
+                    <div class="media-wrapper" style="cursor: pointer;" onclick="loadYuanVideo(this, 'video', 'prwwlgpI51Q')">
+                        <img src="https://img.youtube.com/vi/prwwlgpI51Q/hqdefault.jpg" alt="【time 00:02】La mer / 海" style="width:100%; height:100%; object-fit:contain; background:#000;">
+                        <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:60px; height:40px; background:rgba(0,0,0,0.7); border-radius:10px; display:flex; align-items:center; justify-content:center; pointer-events:none;">
+                            <div style="width:0; height:0; border-style:solid; border-width:10px 0 10px 16px; border-color:transparent transparent transparent #fff;"></div>
+                        </div>
                     </div>
                     <div class="item-info" style="padding: 1rem;">
                         <h4 class="item-title" style="font-size: 1rem; margin:0;">【time 00:02】La mer / 海</h4>
@@ -118,13 +134,11 @@ const PageYuan = {
 
                 <!-- Video 3: 【time 00:03】The Impermanent Birds / 無常的飛鳥 -->
                 <div class="gallery-item">
-                    <div class="media-wrapper">
-                        <a href="https://www.youtube.com/shorts/CiTWpk9LFKQ" target="_blank" style="display:block; width:100%; height:100%; text-decoration:none; position:relative;">
-                            <img src="https://img.youtube.com/vi/CiTWpk9LFKQ/hqdefault.jpg" alt="【time 00:03】The Impermanent Birds / 無常的飛鳥" style="width:100%; height:100%; object-fit:contain; background:#000;">
-                            <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:60px; height:40px; background:rgba(0,0,0,0.7); border-radius:10px; display:flex; align-items:center; justify-content:center;">
-                                <div style="width:0; height:0; border-style:solid; border-width:10px 0 10px 16px; border-color:transparent transparent transparent #fff;"></div>
-                            </div>
-                        </a>
+                    <div class="media-wrapper" style="cursor: pointer;" onclick="loadYuanVideo(this, 'video', 'CiTWpk9LFKQ')">
+                        <img src="https://img.youtube.com/vi/CiTWpk9LFKQ/hqdefault.jpg" alt="【time 00:03】The Impermanent Birds / 無常的飛鳥" style="width:100%; height:100%; object-fit:contain; background:#000;">
+                        <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:60px; height:40px; background:rgba(0,0,0,0.7); border-radius:10px; display:flex; align-items:center; justify-content:center; pointer-events:none;">
+                            <div style="width:0; height:0; border-style:solid; border-width:10px 0 10px 16px; border-color:transparent transparent transparent #fff;"></div>
+                        </div>
                     </div>
                     <div class="item-info" style="padding: 1rem;">
                         <h4 class="item-title" style="font-size: 1rem; margin:0;">【time 00:03】The Impermanent Birds / 無常的飛鳥</h4>
@@ -133,13 +147,11 @@ const PageYuan = {
 
                 <!-- Video 4: 【time 00:04】Remembered by the Fold / 它被折痕記住 -->
                 <div class="gallery-item">
-                    <div class="media-wrapper">
-                        <a href="https://www.youtube.com/shorts/7jijVrh_2MQ" target="_blank" style="display:block; width:100%; height:100%; text-decoration:none; position:relative;">
-                            <img src="https://img.youtube.com/vi/7jijVrh_2MQ/hqdefault.jpg" alt="【time 00:04】Remembered by the Fold / 它被折痕記住" style="width:100%; height:100%; object-fit:contain; background:#000;">
-                            <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:60px; height:40px; background:rgba(0,0,0,0.7); border-radius:10px; display:flex; align-items:center; justify-content:center;">
-                                <div style="width:0; height:0; border-style:solid; border-width:10px 0 10px 16px; border-color:transparent transparent transparent #fff;"></div>
-                            </div>
-                        </a>
+                    <div class="media-wrapper" style="cursor: pointer;" onclick="loadYuanVideo(this, 'video', '7jijVrh_2MQ')">
+                        <img src="https://img.youtube.com/vi/7jijVrh_2MQ/hqdefault.jpg" alt="【time 00:04】Remembered by the Fold / 它被折痕記住" style="width:100%; height:100%; object-fit:contain; background:#000;">
+                        <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:60px; height:40px; background:rgba(0,0,0,0.7); border-radius:10px; display:flex; align-items:center; justify-content:center; pointer-events:none;">
+                            <div style="width:0; height:0; border-style:solid; border-width:10px 0 10px 16px; border-color:transparent transparent transparent #fff;"></div>
+                        </div>
                     </div>
                     <div class="item-info" style="padding: 1rem;">
                         <h4 class="item-title" style="font-size: 1rem; margin:0;">【time 00:04】Remembered by the Fold / 它被折痕記住</h4>
@@ -148,13 +160,11 @@ const PageYuan = {
 
                 <!-- Video 5: 【time 00:05】The Bipupil / 雙瞳 -->
                 <div class="gallery-item">
-                    <div class="media-wrapper">
-                        <a href="https://www.youtube.com/shorts/1J6Cv9ZjPgQ" target="_blank" style="display:block; width:100%; height:100%; text-decoration:none; position:relative;">
-                            <img src="https://img.youtube.com/vi/1J6Cv9ZjPgQ/hqdefault.jpg" alt="【time 00:05】The Bipupil / 雙瞳" style="width:100%; height:100%; object-fit:contain; background:#000;">
-                            <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:60px; height:40px; background:rgba(0,0,0,0.7); border-radius:10px; display:flex; align-items:center; justify-content:center;">
-                                <div style="width:0; height:0; border-style:solid; border-width:10px 0 10px 16px; border-color:transparent transparent transparent #fff;"></div>
-                            </div>
-                        </a>
+                    <div class="media-wrapper" style="cursor: pointer;" onclick="loadYuanVideo(this, 'video', '1J6Cv9ZjPgQ')">
+                        <img src="https://img.youtube.com/vi/1J6Cv9ZjPgQ/hqdefault.jpg" alt="【time 00:05】The Bipupil / 雙瞳" style="width:100%; height:100%; object-fit:contain; background:#000;">
+                        <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:60px; height:40px; background:rgba(0,0,0,0.7); border-radius:10px; display:flex; align-items:center; justify-content:center; pointer-events:none;">
+                            <div style="width:0; height:0; border-style:solid; border-width:10px 0 10px 16px; border-color:transparent transparent transparent #fff;"></div>
+                        </div>
                     </div>
                     <div class="item-info" style="padding: 1rem;">
                         <h4 class="item-title" style="font-size: 1rem; margin:0;">【time 00:05】The Bipupil / 雙瞳</h4>
@@ -225,6 +235,7 @@ const PageYuan = {
                        .yuan-intro .yuan-lead{
                            font-size: 1.15rem;
                            line-height: 1.6;
+                           word-break: break-word;
                        }
                        .yuan-intro .yuan-copy{
                            font-size: 1rem;
