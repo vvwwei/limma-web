@@ -11,9 +11,9 @@ const NodeManager = {
     createNodes() {
         const nodePositions = [
             [12, 5, 5, 'explore'],
-            [-12, 5, -5, 'services'],
+            [-12, 5, -5, 'team'],
             [12, -8, -5, 'contact'],
-            [-12, -8, 5, 'team']
+            [-12, -8, 5, 'services']
         ];
 
         const geometry = new THREE.BoxGeometry(2.5, 2.5, 2.5);

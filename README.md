@@ -73,7 +73,7 @@ Limma_Official_Web/
 ## 如何修改內容
 
 ### 修改頁面內容
-編輯對應的分頁檔，例如 `config/pages/services.js`：
+編輯對應的分頁檔，例如 `config/pages/music.js`：
 
 ```javascript
 const PageServices = {
@@ -104,11 +104,11 @@ const PageExplore = {
 
 ```html
 <!-- Page Configs (Must be loaded before site-config.js) -->
-<script src="config/pages/explore.js"></script>
-<script src="config/pages/services.js"></script>
+<script src="config/pages/cooperate.js"></script>
+<script src="config/pages/music.js"></script>
 <script src="config/pages/about.js"></script>
-<script src="config/pages/contact.js"></script>
-<script src="config/pages/yuan.js"></script>
+<script src="config/pages/activity.js"></script>
+<script src="config/pages/artworks.js"></script>
 
 <!-- Aggregate -->
 <script src="config/site-config.js"></script>

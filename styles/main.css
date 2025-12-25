@@ -336,6 +336,7 @@ body.theme-white .nav-toggle:hover {
     box-shadow: 0 2px 10px rgba(0,0,0,0.08);
     opacity: .55;
     transition: opacity .25s ease, transform .4s ease;
+    font-family: 'Orbitron', sans-serif;
 }
 .interaction-icons:hover{ opacity: .95; }
 .interaction-icons.hint-fade-out{
@@ -358,6 +359,7 @@ body.theme-white .nav-toggle:hover {
     font-size: .85rem;
     opacity: 1;
     font-weight: 600;
+    font-family: 'Orbitron', sans-serif;
 }
 
 #content-overlay {

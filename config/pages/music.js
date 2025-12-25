@@ -1,6 +1,6 @@
 const PageServices = {
     id: 'services',
-    label: 'SERVICES',
+    label: 'Music',
     title: '智能服務與美學架構',
     subtitle: 'AI Services & Aesthetic Architecture',
     content: `
@@ -34,5 +34,6 @@ const PageServices = {
         </div>
     `
 };
+
 
 

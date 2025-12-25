@@ -1,7 +1,7 @@
 const PageExplore = {
     id: 'explore',
-    label: 'EXPLORE',
-    title: 'EXPLORE',
+    label: 'Cooperate',
+    title: 'Cooperate',
     content: `
         <style>
             /* EXPLORE Overview cards */
@@ -23,7 +23,7 @@ const PageExplore = {
             }
             .exp-title-en { display:none; }
             .exp-hash { color:#c8ff66; } 
-            .exp-detail h4 { margin:1.2rem 0 .6rem 0; color:#2a6f00; }
+            .exp-detail h4 { margin:1.2rem 0 .6rem 0; color:0x2a6f00; }
             .exp-back { margin-top:1.2rem; background:#222; color:#fff; border:1px solid #333; }
             .exp-list { margin:.2rem 0 .8rem 0; padding-left:1.2rem; color:#ccc; }
             .exp-cap { color:#9ad100; font-size:.9rem; margin:.6rem 0; }
@@ -157,162 +157,110 @@ const PageExplore = {
             .inline-detail li{
                 margin:.25rem 0;
             }
+
+            /* Yuan Project Grid Styling (for Cooperate page) */
+            .yuan-section-title{
+                color: var(--accent-color);
+                margin: 0.5rem 0 1.8rem 0;
+                font-size: 1.4rem;
+                border-bottom: 1px solid rgba(214,255,90,0.45);
+                padding-bottom: 0.6rem;
+                letter-spacing: 0.06em;
+            }
+            .yuan-project-grid {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 1.5rem;
+                margin-bottom: 2rem;
+            }
+            .yuan-project-grid .project-item {
+                flex: 1 1 calc(50% - 1.5rem);
+                min-width: 300px;
+                background: rgba(255,255,255,0.5);
+                border: 1px solid #eee;
+                border-radius: 8px;
+                overflow: hidden;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            }
+            .yuan-project-grid .media-wrapper {
+                aspect-ratio: 16 / 9;
+            }
+            @media (max-width: 768px) {
+                .yuan-section-title{
+                    font-size: 1.05rem;
+                    margin-top: 1.8rem;
+                }
+                .yuan-project-grid .project-item {
+                    flex: 1 1 100%;
+                }
+                .project-item .item-info{
+                    padding: 0.85rem !important;
+                }
+                .project-item .item-title{
+                    font-size: 0.95rem !important;
+                }
+            }
         </style>
 
         <p class="explore-intro">快速探索 Limma lab 的方法論與能力地景；理解我們如何把AI智能、美學語彙與跨媒體工程連成可持續的商業解決辦法。</p>
 
-        <!-- Overview -->
-        <div id="explore-overview" class="gallery-grid">
-            <div class="gallery-item exp-card">
-                <div class="item-info">
-                    <div class="exp-header">
-                        <div class="ex-tag">EX‑01</div>
-                        <h3 class="item-title"><span class="ex-title">智慧系統架構與 AI 模型建置</span></h3>
-                        <div class="exp-geo"><div class="geo-square spin3d"></div></div>
+        <!-- Cooperate：元光寺專案搬移到此 -->
+        <div id="explore-overview">
+            <h3 class="yuan-section-title">元光寺AI影音專案 (Yuan Guang Temple Project)</h3>
+            <div class="gallery-grid yuan-project-grid">
+                <!-- Project Video 1: 阿彌陀佛歌曲版 -->
+                <div class="gallery-item project-item">
+                    <div class="media-wrapper" style="cursor: pointer;" onclick="window.open('https://www.youtube.com/watch?v=HuWW4mlG-Ho', '_blank')">
+                        <img src="https://img.youtube.com/vi/HuWW4mlG-Ho/hqdefault.jpg" alt="阿彌陀佛歌曲版" style="width:100%; height:100%; object-fit:cover; background:#000;">
+                        <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:60px; height:40px; background:rgba(0,0,0,0.7); border-radius:10px; display:flex; align-items:center; justify-content:center; pointer-events:none;">
+                            <div style="width:0; height:0; border-style:solid; border-width:10px 0 10px 16px; border-color:transparent transparent transparent #fff;"></div>
+                        </div>
                     </div>
-                    <p class="item-desc">建置企業專屬的生成式系統基礎設施，涵蓋音樂、影像、知識型模型與工作流。</p>
-                    <div class="tagset">
-                        <span class="tag">#音樂生產模型</span>
-                        <span class="tag">#AI Agent 引擎</span>
-                        <span class="tag">#影像工作流</span>
+                    <div class="item-info" style="padding: 1rem;">
+                        <h4 class="item-title" style="font-size: 1rem; margin:0;">【從從容容，游刃有餘】阿彌陀佛歌曲版</h4>
                     </div>
-
-                    <!-- Inline expand content for EX-01 -->
-                    <div class="inline-detail" id="ex01-inline">
-                        <h4>Why it matters</h4>
-                        <p style="margin:0 0 .6rem 0;">確保 AI 服務高穩定、可控、可審計，並能依照實際情境安全落地。</p>
-                        <h4>How Limma lab 做</h4>
-                        <ul>
-                            <li>AI 系統工程與活化策略：從架構設計到長期顧問，維持系統可演進。</li>
-                            <li>AI Agent 數據庫與知識庫建構：以語言學分析搭建專屬對話與知識管理。</li>
-                            <li>客製化生成模型：音訊、抽象畫面、視覺概念等模型訓練與 API 化。</li>
-                            <li>跨感官美學參數化：把視覺／聽覺標準轉為訓練參數，輸出具美學一致性。</li>
-                        </ul>
-                    </div>
-                    <div class="exp-gap" style="flex-grow: 1;"></div>
-                    <button class="exp-btn" onclick="LIMMA_EXPLORE.toggleInline('ex01', event)">LEARN MORE</button>
                 </div>
-            </div>
-            <div class="gallery-item exp-card">
-                <div class="item-info">
-                    <div class="exp-header">
-                        <div class="ex-tag">EX‑02</div>
-                        <h3 class="item-title"><span class="ex-title">AI 企業級數位流程建構與轉型</span></h3>
-                        <div class="exp-geo"><div class="geo-triangle spin3d"></div></div>
-                    </div>
-                    <p class="item-desc">把品牌識別、流程治理與內容生產整合成一條龍的轉型方案。</p>
-                    <div class="tagset">
-                        <span class="tag">#品牌再定位</span>
-                        <span class="tag">#互動網站</span>
-                        <span class="tag">#AI內容工廠</span>
-                        <span class="tag">#流程自動化</span>
-                        <span class="tag">#資料治理</span>
-                    </div>
 
-                    <!-- Inline expand content for EX-02 -->
-                    <div class="inline-detail" id="ex02-inline">
-                        <h4>Why it matters</h4>
-                        <p style="margin:0 0 .6rem 0;">既有資料與流程得以重新編排，品牌敘事與營運節點共享同一決策邏輯。</p>
-                        <h4>How Limma lab 做</h4>
-                        <ul>
-                            <li>資料—流程—回應全鏈路：盤點系統、重建 API 與工作流。</li>
-                            <li>應用情境藍圖：拆解任務模組，導入 AI 工作流與自動化。</li>
-                            <li>品牌識別 × 再定位：AI 導入、網站、形象影片、互動體驗。</li>
-                            <li>數位資產重塑：短影音、有聲書、MV、Podcast 等一體化製作。</li>
-                            <li>跨媒體延展：海報、刊物、包裝與周邊皆維持一致感官標準。</li>
-                        </ul>
+                <!-- Project Video 2: 普獻上人 圓寂報恩追思影片 -->
+                <div class="gallery-item project-item">
+                    <div class="media-wrapper" style="cursor: pointer;" onclick="window.open('https://www.youtube.com/watch?v=uVwL3XtcxIU', '_blank')">
+                        <img src="https://img.youtube.com/vi/uVwL3XtcxIU/hqdefault.jpg" alt="普獻上人 圓寂報恩追思影片" style="width:100%; height:100%; object-fit:cover; background:#000;">
+                        <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:60px; height:40px; background:rgba(0,0,0,0.7); border-radius:10px; display:flex; align-items:center; justify-content:center; pointer-events:none;">
+                            <div style="width:0; height:0; border-style:solid; border-width:10px 0 10px 16px; border-color:transparent transparent transparent #fff;"></div>
+                        </div>
                     </div>
-                    <div class="exp-gap" style="flex-grow: 1;"></div>
-                    <button class="exp-btn" onclick="LIMMA_EXPLORE.toggleInline('ex02')">LEARN MORE</button>
+                    <div class="item-info" style="padding: 1rem;">
+                        <h4 class="item-title" style="font-size: 1rem; margin:0;">【普獻上人 圓寂報恩追思影片】</h4>
+                    </div>
                 </div>
-            </div>
-            <div class="gallery-item exp-card">
-                <div class="item-info">
-                    <div class="exp-header">
-                        <div class="ex-tag">EX‑03</div>
-                        <h3 class="item-title"><span class="ex-title">AI 跨感官展演策畫與體驗工程</span></h3>
-                        <div class="exp-geo"><div class="geo-circle spin3d"></div></div>
-                    </div>
-                    <p class="item-desc">以跨媒材藝術結合科技，策畫沉浸式展演與空間體驗。</p>
-                    <div class="tagset">
-                        <span class="tag">#互動介面</span>
-                        <span class="tag">#環繞聲音</span>
-                        <span class="tag">#投影視覺裝置</span>
-                    </div>
 
-                    <!-- Inline expand content for EX-03 -->
-                    <div class="inline-detail" id="ex03-inline">
-                        <h4>Why it matters</h4>
-                        <p style="margin:0 0 .6rem 0;">讓品牌、場館或活動在多感層次中與觀眾建立記憶點。</p>
-                        <h4>How Limma lab 做</h4>
-                        <ul>
-                            <li>策展與製作統籌：主題設定、行銷宣傳、導覽與跨團隊協作。</li>
-                            <li>聲音與空間包覆：環繞音場、聲景雕塑、客製音樂／音像資料庫。</li>
-                            <li>AI 互動介面與劇場敘事：觸控桌、感應牆、舞台，以故事整合動線。</li>
-                            <li>互動投影與視覺生成：3D 投影、動態追蹤、AI 影像讓行為即時成畫面。</li>
-                        </ul>
+                <!-- Project Video 3: 普獻上人 音聲重現 -->
+                <div class="gallery-item project-item">
+                    <div class="media-wrapper" style="cursor: pointer;" onclick="window.open('https://www.youtube.com/watch?v=F_84u3K63EE', '_blank')">
+                        <img src="https://img.youtube.com/vi/F_84u3K63EE/hqdefault.jpg" alt="普獻上人 音聲重現" style="width:100%; height:100%; object-fit:cover; background:#000;">
+                        <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:60px; height:40px; background:rgba(0,0,0,0.7); border-radius:10px; display:flex; align-items:center; justify-content:center; pointer-events:none;">
+                            <div style="width:0; height:0; border-style:solid; border-width:10px 0 10px 16px; border-color:transparent transparent transparent #fff;"></div>
+                        </div>
                     </div>
-                    <div class="exp-gap" style="flex-grow: 1;"></div>
-                    <button class="exp-btn" onclick="LIMMA_EXPLORE.toggleInline('ex03', event)">LEARN MORE</button>
+                    <div class="item-info" style="padding: 1rem;">
+                        <h4 class="item-title" style="font-size: 1rem; margin:0;">【普獻上人 音聲重現】一小時版本《心經》演唱</h4>
+                    </div>
                 </div>
-            </div>
-        </div>
 
-        <!-- Detail -->
-        <div id="explore-detail" class="exp-detail" style="display:none;">
-            <div id="ex01" class="exp-modal-card" style="display:none;">
-                <h3 class="item-title">EX‑01 智慧系統架構與 AI 模型建置</h3>
-                <h4>What it is</h4>
-                <p>建置企業專屬的生成式系統基礎設施，涵蓋音樂、影像、知識型模型與工作流。</p>
-                <h4>Why it matters</h4>
-                <p>確保 AI 服務高穩定、可控、可審計，並能依照實際情境安全落地。</p>
-                <h4>How Limma lab 做</h4>
-                <ul class="exp-list">
-                    <li>AI 系統工程與活化策略：從架構設計到長期顧問，維持系統可演進。</li>
-                    <li>AI Agent 數據庫與知識庫建構：以語言學分析搭建專屬對話與知識管理。</li>
-                    <li>客製化生成模型：音訊、抽象畫面、視覺概念等模型訓練與 API 化。</li>
-                    <li>跨感官美學參數化：把視覺／聽覺標準轉為訓練參數，輸出具美學一致性。</li>
-                </ul>
-                <p class="exp-cap">Capabilities：Music Generation｜Domain AI Agent Engine｜Video/Image Workflow｜Model Fine‑tuning｜Evaluation & Governance</p>
-                <p class="exp-cap">Case / Application：音樂版權資料庫自動編曲、跨語系客服 Agent、視覺素材一鍵生成等。</p>
-                <button class="exp-btn exp-back" onclick="LIMMA_EXPLORE.back()">回到概覽</button>
-            </div>
-
-            <div id="ex02" class="exp-modal-card" style="display:none;">
-                <h3 class="item-title">EX‑02 AI 企業級數位流程建構與轉型</h3>
-                <h4>What it is</h4>
-                <p>把品牌識別、流程治理與內容生產整合成一條龍的轉型方案。</p>
-                <h4>Why it matters</h4>
-                <p>既有資料與流程得以重新編排，品牌敘事與營運節點共享同一決策邏輯。</p>
-                <h4>How Limma lab 做</h4>
-                <ul class="exp-list">
-                    <li>資料—流程—回應全鏈路：盤點系統、重建 API 與工作流。</li>
-                    <li>應用情境藍圖：拆解任務模組，導入 AI 工作流與自動化。</li>
-                    <li>品牌識別 × 再定位：AI 導入、網站、形象影片、互動體驗。</li>
-                    <li>數位資產重塑：短影音、有聲書、MV、Podcast 等一體化製作。</li>
-                    <li>跨媒體延展：海報、刊物、包裝與周邊皆維持一致感官標準。</li>
-                </ul>
-                <p class="exp-cap">Capabilities：Brand Strategy｜Immersive Web/App｜AI Content Factory｜Voice/Visual Restoration｜Workflow Orchestration｜Measurement & Dashboards</p>
-                <p class="exp-cap">Case / Application：老字號品牌再定位＋AI 修復影像、互動展間與周邊等完整轉型專案。</p>
-                <button class="exp-btn exp-back" onclick="LIMMA_EXPLORE.back()">回到概覽</button>
-            </div>
-
-            <div id="ex03" class="exp-modal-card" style="display:none;">
-                <h3 class="item-title">EX‑03 AI 跨感官展演策畫與體驗工程</h3>
-                <h4>What it is</h4>
-                <p>以跨媒材藝術結合科技，策畫沉浸式展演與空間體驗。</p>
-                <h4>Why it matters</h4>
-                <p>讓品牌、場館或活動在多感層次中與觀眾建立記憶點。</p>
-                <h4>How Limma lab 做</h4>
-                <ul class="exp-list">
-                    <li>策展與製作統籌：主題設定、行銷宣傳、導覽與跨團隊協作。</li>
-                    <li>聲音與空間包覆：環繞音場、聲景雕塑、客製音樂／音像資料庫。</li>
-                    <li>AI 互動介面與劇場敘事：觸控桌、感應牆、舞台，以故事整合動線。</li>
-                    <li>互動投影與視覺生成：3D 投影、動態追蹤、AI 影像讓行為即時成畫面。</li>
-                </ul>
-                <p class="exp-cap">Capabilities：Interactive Interface｜Immersive Audio｜Projection & Generative Visuals｜Installation Design｜Show Control｜On‑site Operations</p>
-                <p class="exp-cap">Case / Application：跨感官品牌展、沉浸式新品發表、常設體驗館、互動藝術裝置等。</p>
-                <button class="exp-btn exp-back" onclick="LIMMA_EXPLORE.back()">回到概覽</button>
+                <!-- Project Playlist: 祈願333 -->
+                <div class="gallery-item project-item">
+                    <div class="media-wrapper" style="cursor: pointer;" onclick="window.open('https://www.youtube.com/playlist?list=PLmLjF88JvZq8lRR4dJDBAZHeOG4XGqEk0', '_blank')">
+                        <img src="20251015.jpg" alt="祈願333" style="width:100%; height:100%; object-fit:cover; background:#000;">
+                        <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:60px; height:40px; background:rgba(0,0,0,0.7); border-radius:10px; display:flex; align-items:center; justify-content:center; pointer-events:none;">
+                            <!-- Playlist Icon -->
+                            <svg viewBox="0 0 24 24" style="width:24px;height:24px;fill:#fff;"><path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-8 12.5v-9l6 4.5-6 4.5z"/></svg>
+                        </div>
+                        <div style="position:absolute; bottom:10px; right:10px; background:rgba(0,0,0,0.8); color:#fff; padding:2px 6px; border-radius:4px; font-size:0.8rem; pointer-events:none;">PLAYLIST</div>
+                    </div>
+                    <div class="item-info" style="padding: 1rem;">
+                        <h4 class="item-title" style="font-size: 1rem; margin:0;">【祈願333】《金剛經大義》+ 直播精華</h4>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -420,5 +368,6 @@ const PageExplore = {
         </script>
     `
 };
+
 
 
