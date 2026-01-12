@@ -1,7 +1,7 @@
 const PageAbout = {
     id: 'team',
-    label: 'ABOUT US', 
-    title: 'ABOUT US',
+    label: 'About Us', 
+    title: 'About Us',
     content: `
         <p style="font-size:1.1rem; margin-bottom:3rem; line-height:1.8; max-width:800px;">
             <strong style="color:#D6FF5A; font-size:1.4rem; display:block; margin-bottom:0.5rem;">Limma lab</strong>

@@ -3,11 +3,11 @@
  * 
  * 此檔案負責整合所有頁面的設定。
  * 若要修改具體頁面內容，請前往 config/pages/ 目錄下的對應檔案：
- * - explore.js
- * - services.js
+ * - cooperate.js
+ * - music.js
  * - about.js
- * - contact.js
- * - yuan.js
+ * - activity.js
+ * - artworks.js
  */
 
 const siteConfig = {

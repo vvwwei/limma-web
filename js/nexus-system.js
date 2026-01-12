@@ -106,7 +106,7 @@ const NexusSystem = {
         this.yuanMesh.receiveShadow = true;
         this.yuanGroup.add(this.yuanMesh);
 
-        const textTexture = TextureGenerator.createTextSprite("Yuàn");
+        const textTexture = TextureGenerator.createTextSprite("Artworks");
         const spriteMat = new THREE.SpriteMaterial({ map: textTexture, transparent: true });
         const sprite = new THREE.Sprite(spriteMat);
         sprite.position.set(0, 3.6, 0); 
